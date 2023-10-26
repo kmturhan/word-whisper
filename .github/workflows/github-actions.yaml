@@ -23,7 +23,7 @@ jobs:
         dotnet restore
         dotnet build --configuration Release
         dotnet publish -c Release -o ./publish
-      working-directory: src/MyApp
+      working-directory: WordWhisper.Web
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
