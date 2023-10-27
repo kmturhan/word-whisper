@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: kmturhan/word-whisper@v1
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: kmturhan/word-whisper@v1
       with:
         dotnet-version: 7.x
 
@@ -26,7 +26,7 @@ jobs:
       working-directory: WordWhisper.Web
 
     - name: Deploy to GitHub Pages
-      uses: test/gh-action-pg@v5
+      uses: kmturhan/word-whisper@v1
       with:
-        deploy_key: ${{ secrets.test }}
+        deploy_key: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./publish
