@@ -26,7 +26,7 @@ jobs:
       working-directory: WordWhisper.Web
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: test/gh-action-pg@v5
       with:
-        deploy_key: ${{ secrets.GITHUB_TOKEN }}
+        deploy_key: ${{ secrets.test }}
         publish_dir: ./publish
