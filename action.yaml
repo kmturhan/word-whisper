@@ -28,5 +28,4 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: kmturhan/word-whisper@v1
       with:
-        deploy_key: ${{ secrets.TEST }}
         publish_dir: ./publish
