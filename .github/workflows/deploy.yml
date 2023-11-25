@@ -16,4 +16,4 @@ jobs:
             username: ${{ secrets.SSH_USERNAME }}
             key: ${{ secrets.SSH_KEY }}
             port: ${{ secrets.SSH_PORT }}
-            script: cd /home/website/word-whisper && ecbo hello world > hello.txt && git checkout prod && git pull && bash start.sh
+            script: cd /home/website/word-whisper && echo test && ecbo hello world > hello.txt && git checkout prod && git pull && bash start.sh
