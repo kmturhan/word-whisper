@@ -13,8 +13,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 app.Logger.LogInformation("START PROJECT");
-var movieApiKey = builder.Configuration["ConnectionStrings:SqlServer"];
-app.Logger.LogInformation(movieApiKey);
+var connectionStringSql = builder.Configuration["ConnectionStrings:SqlServer"];
+app.Logger.LogInformation(connectionStringSql); 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
