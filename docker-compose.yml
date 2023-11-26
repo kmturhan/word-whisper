@@ -6,8 +6,5 @@
         ports:
             - 80:80
         restart: always
-        environment:
-        - ASPNETCORE_ENVIRONMENT=Development
-        - USER_SECRETS_ID=cf22710a-baf0-45a1-8890-18c3b00f12a6
-        volumes:
-        - ~/.microsoft/usersecrets/$USER_SECRETS_ID:/app/secrets
+        volumes: 
+            - /home/ubuntu/.microsoft/usersecrets:/app/secrets
