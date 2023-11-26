@@ -12,7 +12,9 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.Logger.LogInformation("START PROJECT");
+var movieApiKey = builder.Configuration["ConnectionStrings:SqlServer"];
+app.Logger.LogInformation(movieApiKey);
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
