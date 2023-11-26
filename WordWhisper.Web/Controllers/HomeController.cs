@@ -8,17 +8,21 @@ namespace WordWhisper.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IConfiguration _config;
-        public HomeController(ILogger<HomeController> logger, IConfiguration config)
+        private readonly WordWhisperApplicationContext _context;
+        public HomeController(ILogger<HomeController> logger, IConfiguration config, WordWhisperApplicationContext context)
         {
             _logger = logger;
             _config = config;
+            _context = context;
         }
 
         public IActionResult Index()
         {
             var ss = _config.GetValue<string>("ConnectionStrings:SqlServer");
             _logger.LogInformation("INDEX : " + ss);
-            return View();
+
+            var testDb = _context.Users.ToList();
+            return View(testDb);
         }
 
         public IActionResult Privacy()

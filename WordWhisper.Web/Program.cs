@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using WordWhisper.Web.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+AppSetting.ConnectionString = builder.Configuration["ConnectionStrings:SqlServer"];
+builder.Services.AddDbContext<WordWhisperApplicationContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -13,8 +17,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 app.Logger.LogInformation("START PROJECT");
-var connectionStringSql = builder.Configuration["ConnectionStrings:SqlServer"];
-app.Logger.LogInformation(connectionStringSql); 
+
+
+//builder.Services.AddDbContext<WordWhisperApplicationContext>(options => options.UseSqlServer(connectionStringSql));
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
