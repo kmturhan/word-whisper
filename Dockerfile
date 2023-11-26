@@ -4,6 +4,6 @@ COPY . .
 RUN dotnet publish WordWhisper.Web/WordWhisper.Web.csproj -c Release --property:PublishDir=/out
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
-COPY /.microsoft/usersecrets /app/secrets
+COPY .microsoft/usersecrets /app/secrets
 COPY --from=build-env /out .
 ENTRYPOINT dotnet WordWhisper.Web.dll
