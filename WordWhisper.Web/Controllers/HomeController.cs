@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 using WordWhisper.Web.Models;
 
 namespace WordWhisper.Web.Controllers
@@ -8,21 +9,23 @@ namespace WordWhisper.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private IConfiguration _config;
-        private readonly WordWhisperApplicationContext _context;
-        public HomeController(ILogger<HomeController> logger, IConfiguration config, WordWhisperApplicationContext context)
+        private readonly WordWhisperContext _context;
+        public HomeController(ILogger<HomeController> logger, IConfiguration config, WordWhisperContext context)
         {
             _logger = logger;
             _config = config;
             _context = context;
         }
-
+        
         public IActionResult Index()
         {
-            var ss = _config.GetValue<string>("ConnectionStrings:SqlServer");
-            _logger.LogInformation("INDEX : " + ss);
+            var userList = _context.Users.ToList();
+            return View(userList);
+            //var ss = _config.GetValue<string>("ConnectionStrings:SqlServer");
+            //_logger.LogInformation("INDEX : " + ss);
 
-            var testDb = _context.Users.ToList();
-            return View(testDb);
+            //var testDb = _context.Users.ToList();
+            //return View(testDb);
         }
 
         public IActionResult Privacy()

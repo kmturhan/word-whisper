@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 using WordWhisper.Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 AppSetting.ConnectionString = builder.Configuration["ConnectionStrings:SqlServer"];
-builder.Services.AddDbContext<WordWhisperApplicationContext>();
+builder.Services.AddDbContext<WordWhisperContext>(x => x.UseSqlServer(AppSetting.ConnectionString));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
