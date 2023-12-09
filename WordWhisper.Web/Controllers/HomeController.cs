@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
+using WordWhisper.Entities;
 using WordWhisper.Web.Models;
 
 namespace WordWhisper.Web.Controllers
@@ -20,6 +21,7 @@ namespace WordWhisper.Web.Controllers
         public IActionResult Index()
         {
             var userList = _context.Users.ToList();
+            
             return View(userList);
             //var ss = _config.GetValue<string>("ConnectionStrings:SqlServer");
             //_logger.LogInformation("INDEX : " + ss);
@@ -27,8 +29,8 @@ namespace WordWhisper.Web.Controllers
             //var testDb = _context.Users.ToList();
             //return View(testDb);
         }
-
-        public IActionResult Privacy()
+        [Route("~/test/{city}")]
+        public IActionResult Privacy(string city, User user)
         {
             return View();
         }
