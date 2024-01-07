@@ -9,7 +9,7 @@ namespace WordWhisper.Core
 {
     public interface IUnitOfWork : IDisposable
     {
-        IUser Users { get; }
+        IUserRepository Users { get; }
         Task<int> CommitAsync();
     }
 }
