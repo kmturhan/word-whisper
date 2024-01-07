@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordWhisper.Web", "WordWhis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordWhisper.WebAPI", "WordWhisper.WebAPI\WordWhisper.WebAPI.csproj", "{5949EBDF-48F4-4371-BD45-B5C88F69BC83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordWhisper.Entities", "WordWhisper.Entities\WordWhisper.Entities.csproj", "{DBA3B045-6555-4E51-8541-A8DA17A4526F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordWhisper.Entities", "WordWhisper.Entities\WordWhisper.Entities.csproj", "{DBA3B045-6555-4E51-8541-A8DA17A4526F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordWhisper.DataAccess", "WordWhisper.DataAccess\WordWhisper.DataAccess.csproj", "{86260013-B965-4B10-B02A-2B8689478135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordWhisper.DataAccess", "WordWhisper.DataAccess\WordWhisper.DataAccess.csproj", "{86260013-B965-4B10-B02A-2B8689478135}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordWhisper.Services", "WordWhisper.Services\WordWhisper.Services.csproj", "{3CA169FC-DEA0-4FC5-8E0F-771852631A0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{86260013-B965-4B10-B02A-2B8689478135}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86260013-B965-4B10-B02A-2B8689478135}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86260013-B965-4B10-B02A-2B8689478135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CA169FC-DEA0-4FC5-8E0F-771852631A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA169FC-DEA0-4FC5-8E0F-771852631A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA169FC-DEA0-4FC5-8E0F-771852631A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA169FC-DEA0-4FC5-8E0F-771852631A0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 using System.Threading.Tasks;
-using WordWhisper.Entities;
+using WordWhisper.Core.Models;
+using WordWhisper.DataAccess.Configuration;
 
 namespace WordWhisper.DataAccess.Concrete.EntityFramework.Contexts
 {
@@ -17,5 +18,11 @@ namespace WordWhisper.DataAccess.Concrete.EntityFramework.Contexts
         }
         
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .ApplyConfiguration(new UserConfiguration());
+        }
     }
 }

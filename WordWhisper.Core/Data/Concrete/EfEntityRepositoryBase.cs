@@ -12,6 +12,7 @@ namespace WordWhisper.Core.Data.Concrete
     {
         public Task AddAsync(TEntity entity)
         {
+            
             throw new NotImplementedException();
         }
 

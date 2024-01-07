@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WordWhisper.Core\WordWhisper.Core.csproj" />
     <ProjectReference Include="..\WordWhisper.Entities\WordWhisper.Entities.csproj" />
   </ItemGroup>
 

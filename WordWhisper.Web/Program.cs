@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using WordWhisper.Core;
+using WordWhisper.DataAccess;
 using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 using WordWhisper.Web.Models;
 
@@ -28,6 +30,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSetting.JwtSigninKey))
     };
 });
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
