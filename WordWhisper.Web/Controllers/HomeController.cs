@@ -20,9 +20,9 @@ namespace WordWhisper.Web.Controllers
         
         public IActionResult Index()
         {
-            var userList = _context.Users.ToList();
+            //var userList = _context.Users.ToList();
             
-            return View(userList);
+            return View();
             //var ss = _config.GetValue<string>("ConnectionStrings:SqlServer");
             //_logger.LogInformation("INDEX : " + ss);
 

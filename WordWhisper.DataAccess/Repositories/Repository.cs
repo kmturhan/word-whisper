@@ -14,7 +14,7 @@ namespace WordWhisper.DataAccess.Repositories
         protected readonly DbContext Context;
         public Repository(DbContext context)
         {
-            this.Context = context;
+            Context = context;
         }
         public async Task AddAsync(TEntity entity)
         {

@@ -75,8 +75,11 @@ namespace WordWhisper.Web.Controllers
         public string GetAuth()
         {
             return "OK!";
+        }
 
-
+        public IActionResult Register()
+        {
+            return View();
         }
     }
 }

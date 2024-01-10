@@ -1,0 +1,9 @@
+﻿@using WordWhisper.Web.DTO
+@model List<UserDTO>
+
+@foreach(var item in Model)
+{
+    <h1>@item.Email</h1>
+    <h1>@item.Username</h1>
+    <h1>@item.Password</h1>
+}

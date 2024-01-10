@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WordWhisper.Core\WordWhisper.Core.csproj" />
+  </ItemGroup>
+
 </Project>
