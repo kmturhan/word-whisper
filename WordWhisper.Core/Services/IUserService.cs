@@ -11,8 +11,8 @@ namespace WordWhisper.Core.Services
     {
         Task<IEnumerable<User>> GetAllUsers();
         Task<User> GetUserById(int id);
-        Task<User> CreateUser(User newArtist);
-        Task UpdateUser(User artistToBeUpdated, User artist);
-        Task DeleteUser(User artist);
+        Task<User> CreateUser(User newUser);
+        Task UpdateUser(User userToBeUpdated, User user);
+        Task DeleteUser(User user);
     }
 }

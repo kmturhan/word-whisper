@@ -20,8 +20,7 @@ namespace WordWhisper.DataAccess.Repositories
         
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            return await WordWhisperContext.Users
-                .Include(m => m.Username).ToListAsync();
+            return await WordWhisperContext.Users.ToListAsync();
         }
 
         public async Task<User> GetUserByIdAsync(int id)

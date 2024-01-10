@@ -1,0 +1,11 @@
+﻿@using WordWhisper.Core.Models
+@model User
+
+<h1>REGISTER</h1>
+
+<form asp-controller="Auth" asp-action="Register" method="post" asp-area="User">
+    Email: @Html.TextBoxFor(m => m.Email) <br />
+    Username:  @Html.TextBoxFor(m => m.Username, new {@class = "test"}) <br />
+    Password: @Html.TextBoxFor(m => m.Password) <br />
+    <button type="submit">Register</button>
+</form>
