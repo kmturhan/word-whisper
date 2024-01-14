@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WordWhisper.Repository.Abstract;
 
-namespace WordWhisper.Repository
+namespace WordWhisper.Repository.Concrete
 {
     public class GeneralRepository<T> : IRepository<T> where T : class
     {
@@ -14,6 +15,7 @@ namespace WordWhisper.Repository
         public GeneralRepository(DbContext context)
         {
             _context = context;
+            _dbSet = _context.Set<T>();
 
         }
         public void Add(T entity)
