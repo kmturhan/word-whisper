@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using WordWhisper.Core;
-using WordWhisper.Web.DTO;
 namespace WordWhisper.Web.Areas.User.Controllers
 {
     [Area("User")]
@@ -10,7 +9,7 @@ namespace WordWhisper.Web.Areas.User.Controllers
     {
         private readonly IMapper _mapper;
 
-        public AuthController( IMapper mapper)
+        public AuthController(IMapper mapper)
         {
             _mapper = mapper;
         }
@@ -27,18 +26,7 @@ namespace WordWhisper.Web.Areas.User.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Register(UserDTO user)
-        {
-            if(ModelState.IsValid)
-            {
-                
-                
-                return Redirect("~/user/auth/allUsers");
-                
-            }
-            return Redirect("~/user/auth/register");
-        }
+        
 
         [HttpGet]
         public async Task<IActionResult> AllUsers()
