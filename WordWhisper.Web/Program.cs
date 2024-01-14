@@ -3,10 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WordWhisper.Core;
-using WordWhisper.Core.Services;
 using WordWhisper.DataAccess;
-using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
-using WordWhisper.Services;
 using WordWhisper.Web.Models;
 using AutoMapper;
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +14,7 @@ AppSetting.ConnectionString = builder.Configuration["ConnectionStrings:SqlServer
 AppSetting.JwtIssuer = builder.Configuration["JwtConfig:Issuer"];
 AppSetting.JwtAudience = builder.Configuration["JwtConfig:Audience"];
 AppSetting.JwtSigninKey = builder.Configuration["JwtConfig:SigninKey"];
-builder.Services.AddDbContext<WordWhisperContext>(x => x.UseSqlServer(AppSetting.ConnectionString));
+//builder.Services.AddDbContext<WordWhisperContext>(x => x.UseSqlServer(AppSetting.ConnectionString));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -33,8 +30,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 
