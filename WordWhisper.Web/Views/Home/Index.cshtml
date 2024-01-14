@@ -1,19 +1,10 @@
-﻿@using WordWhisper.Entities;
-@model List<User>
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">TEST Welcome TEST TEST test</h1>
-    @if(Model is not null)
-    {
-        @foreach (var item in Model)
-        {
-            <h1>@item.Email</h1>
-            <h1>@item.Username</h1>
-        }
-    }
+    
     
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

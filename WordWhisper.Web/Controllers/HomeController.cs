@@ -27,7 +27,7 @@ namespace WordWhisper.Web.Controllers
             //return View(testDb);
         }
         [Route("~/test/{city}")]
-        public IActionResult Privacy(string city, User user)
+        public IActionResult Privacy(string city)
         {
             return View();
         }
