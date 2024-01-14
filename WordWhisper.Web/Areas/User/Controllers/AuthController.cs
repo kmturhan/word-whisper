@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using WordWhisper.Core;
-using WordWhisper.Core.Models;
 using WordWhisper.Web.DTO;
 namespace WordWhisper.Web.Areas.User.Controllers
 {
@@ -33,9 +32,7 @@ namespace WordWhisper.Web.Areas.User.Controllers
         {
             if(ModelState.IsValid)
             {
-                var userResource = _mapper.Map<UserDTO, WordWhisper.Core.Models.User>(user);
-                userResource.CreatedDate = DateTime.Now;
-                //var result = await _userService.CreateUser(userResource);
+                
                 
                 return Redirect("~/user/auth/allUsers");
                 
