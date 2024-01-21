@@ -31,9 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WordWhisper.Core\WordWhisper.Core.csproj" />
     <ProjectReference Include="..\WordWhisper.DataAccess\WordWhisper.DataAccess.csproj" />
     <ProjectReference Include="..\WordWhisper.Repository\WordWhisper.Repository.csproj" />
-    <ProjectReference Include="..\WordWhisper.Services\WordWhisper.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
