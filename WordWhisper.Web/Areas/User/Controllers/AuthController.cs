@@ -1,22 +1,26 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using WordWhisper.Core;
-using WordWhisper.Core.Models;
-using WordWhisper.Core.Services;
-using WordWhisper.Web.DTO;
+using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
+using WordWhisper.Entities.Concrete;
+using WordWhisper.Repository.Abstract;
+using WordWhisper.Repository.Concrete;
 namespace WordWhisper.Web.Areas.User.Controllers
 {
     [Area("User")]
     public class AuthController : Controller
     {
-        private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        private WordWhisperEFContext _context;
+        private readonly IUnitOfWork _uow;
 
-        public AuthController(IUserService userService, IMapper mapper)
+        public AuthController(IMapper mapper, WordWhisperEFContext context, UnitOfWork uow)
         {
-            _userService = userService;
             _mapper = mapper;
+            _context = context;
+            _uow = uow;
         }
         [HttpGet]
         public IActionResult Index()
@@ -28,30 +32,46 @@ namespace WordWhisper.Web.Areas.User.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            //Entities.Concrete.User user = new Entities.Concrete.User();
+            //UnitOfWork unitOfWork = new UnitOfWork(_context);
+            //user.Email = "kmturhan@gmail.com";
+            //user.CreatedDate = DateTime.Now;
+            //user.Hash = "test";
+            //user.IsActive = true;
+            //user.Username = "testuser";
+            //user.Password = "userpass";
+            //unitOfWork.UserRepository.Add(user);
+            //unitOfWork.Complete();
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserDTO user)
+        public IActionResult Register(WordWhisper.Entities.Concrete.User user)
         {
-            if(ModelState.IsValid)
-            {
-                var userResource = _mapper.Map<UserDTO, WordWhisper.Core.Models.User>(user);
-                userResource.CreatedDate = DateTime.Now;
-                var result = await _userService.CreateUser(userResource);
-                
-                return Redirect("~/user/auth/allUsers");
-                
-            }
-            return Redirect("~/user/auth/register");
+            user.Hash = "test";
+            _uow.UserRepository.Add(user);
+            _uow.Complete();
+            return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllUsers()
+        public async Task<IActionResult> Login()
         {
-            var result = await _userService.GetAllUsers();
-            var userResources = _mapper.Map<IEnumerable<WordWhisper.Core.Models.User>, IEnumerable<UserDTO>>(result);
-            return View(userResources);
+            
+            //var result = await _userService.GetAllUsers();
+            //var userResources = _mapper.Map<IEnumerable<WordWhisper.Core.Models.User>, IEnumerable<UserDTO>>(result);
+            //return View(userResources);
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(WordWhisper.Entities.Concrete.User user)
+        {
+            bool isLogin = _uow.UserRepository.Login(user.Username, user.Password);
+            if (isLogin)
+                return Redirect("~/home/index");
+            
+            return Redirect("~/error");
         }
     }
 }

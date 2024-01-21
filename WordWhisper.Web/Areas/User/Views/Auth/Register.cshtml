@@ -1,11 +1,15 @@
-﻿@using WordWhisper.Core.Models
-@model User
-
+﻿@model WordWhisper.Entities.Concrete.User
 <h1>REGISTER</h1>
 
-<form asp-controller="Auth" asp-action="Register" method="post" asp-area="User">
-    Email: @Html.TextBoxFor(m => m.Email) <br />
-    Username:  @Html.TextBoxFor(m => m.Username, new {@class = "test"}) <br />
-    Password: @Html.TextBoxFor(m => m.Password) <br />
+
+<form asp-area="User" asp-action="Register" asp-controller="Auth" method="post">
+    <label>Username : </label>
+        @Html.TextBoxFor(x => x.Username)
+    
+        <label>Email : </label>
+        @Html.TextBoxFor(x => x.Email)
+        <label>Password : </label>
+    @Html.TextBoxFor(x => x.Password)
+
     <button type="submit">Register</button>
 </form>
