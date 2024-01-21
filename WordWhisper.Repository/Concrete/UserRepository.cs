@@ -26,6 +26,7 @@ namespace WordWhisper.Repository.Concrete
             if (isLogin != null)
                 return true;
             
+
             return false;
         }
     }
