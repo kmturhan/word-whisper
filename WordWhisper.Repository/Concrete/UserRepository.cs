@@ -11,15 +11,22 @@ namespace WordWhisper.Repository.Concrete
 {
     public class UserRepository : GeneralRepository<User>, IUserRepository
     {
-        public WordWhisperEFContext WWContext { get { return _context as WordWhisperEFContext;  } }
-        public UserRepository(WordWhisperEFContext context):base(context)
+        public UserRepository(WordWhisperEFContext context) : base(context)
         {
-            
         }
-        public bool Login()
+
+        public void Register(User user)
         {
-            var list = WWContext.Users.ToList();
-            return true;
+
+        }
+        public bool Login(string username, string password)
+        {
+            var isLogin = GetAll().FirstOrDefault(x => x.IsActive && x.Username == username && x.Password == password);
+            
+            if (isLogin != null)
+                return true;
+            
+            return false;
         }
     }
 }

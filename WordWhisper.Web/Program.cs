@@ -7,10 +7,12 @@ using WordWhisper.DataAccess;
 using WordWhisper.Web.Models;
 using AutoMapper;
 using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
+using WordWhisper.Repository.Abstract;
+using WordWhisper.Repository.Concrete;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 AppSetting.ConnectionString = builder.Configuration["ConnectionStrings:SqlServer"];
 AppSetting.JwtIssuer = builder.Configuration["JwtConfig:Issuer"];
 AppSetting.JwtAudience = builder.Configuration["JwtConfig:Audience"];
@@ -30,7 +32,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSetting.JwtSigninKey))
     };
 });
-
+builder.Services.AddScoped<UnitOfWork>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 
