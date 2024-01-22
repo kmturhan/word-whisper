@@ -20,7 +20,7 @@ namespace WordWhisper.Repository.Concrete
 
         public void Register(User user)
         {
-            user.Hash = _passwordHasher.Hash(user.Password);
+            user.Password = _passwordHasher.Hash(user.Password);
             Add(user);
         }
         public bool Login(string username, string password)
@@ -32,7 +32,7 @@ namespace WordWhisper.Repository.Concrete
                 throw new Exception("User is not found or user is not active!");
             }
 
-            var result = _passwordHasher.Verify(user.Hash, password);
+            var result = _passwordHasher.Verify(user.Password, password);
             
             if(!result)
             {
