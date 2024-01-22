@@ -48,8 +48,7 @@ namespace WordWhisper.Web.Areas.User.Controllers
         [HttpPost]
         public IActionResult Register(WordWhisper.Entities.Concrete.User user)
         {
-            user.Hash = "test";
-            _uow.UserRepository.Add(user);
+            _uow.UserRepository.Register(user);
             _uow.Complete();
             return View();
         }

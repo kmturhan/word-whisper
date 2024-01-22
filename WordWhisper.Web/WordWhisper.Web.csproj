@@ -33,6 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WordWhisper.Core\WordWhisper.Core.csproj" />
     <ProjectReference Include="..\WordWhisper.DataAccess\WordWhisper.DataAccess.csproj" />
+    <ProjectReference Include="..\WordWhisper.Infrastructer\WordWhisper.Infrastructer.csproj" />
     <ProjectReference Include="..\WordWhisper.Repository\WordWhisper.Repository.csproj" />
   </ItemGroup>
 

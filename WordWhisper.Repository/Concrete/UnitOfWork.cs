@@ -11,10 +11,10 @@ namespace WordWhisper.Repository.Concrete
     public class UnitOfWork : IUnitOfWork
     {
         private WordWhisperEFContext _wordWhisperContext;
-        public UnitOfWork(WordWhisperEFContext context)
+        public UnitOfWork(WordWhisperEFContext context, IUserRepository userRepository)
         {
+            UserRepository = userRepository;
             _wordWhisperContext = context;
-            UserRepository = new UserRepository(_wordWhisperContext);
         }
         public IUserRepository UserRepository { get; private set; }
 

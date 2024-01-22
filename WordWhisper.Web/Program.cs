@@ -9,6 +9,7 @@ using AutoMapper;
 using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 using WordWhisper.Repository.Abstract;
 using WordWhisper.Repository.Concrete;
+using WordWhisper.Infrastructer;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -34,6 +35,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();

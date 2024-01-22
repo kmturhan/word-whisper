@@ -9,6 +9,7 @@ namespace WordWhisper.Repository.Abstract
 {
     public interface IUserRepository : IRepository<User>
     {
+        void Register(User user);
         bool Login(string username, string password);
     }
 }
