@@ -37,6 +37,10 @@ builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+});
 builder.Services.AddAutoMapper(typeof(Program));
 var app = builder.Build();
 
