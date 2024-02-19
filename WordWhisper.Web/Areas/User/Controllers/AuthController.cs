@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using WordWhisper.Core;
 using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 using WordWhisper.Entities.Concrete;
@@ -28,8 +31,9 @@ namespace WordWhisper.Web.Areas.User.Controllers
 
             return View();
         }
-        
+
         [HttpGet]
+
         public IActionResult Register()
         {
             //Entities.Concrete.User user = new Entities.Concrete.User();
@@ -48,16 +52,16 @@ namespace WordWhisper.Web.Areas.User.Controllers
         [HttpPost]
         public IActionResult Register(WordWhisper.Entities.Concrete.User user)
         {
-            user.Hash = "test";
-            _uow.UserRepository.Add(user);
+            _uow.UserRepository.Register(user);
             _uow.Complete();
             return View();
         }
 
         [HttpGet]
+
         public async Task<IActionResult> Login()
         {
-            
+
             //var result = await _userService.GetAllUsers();
             //var userResources = _mapper.Map<IEnumerable<WordWhisper.Core.Models.User>, IEnumerable<UserDTO>>(result);
             //return View(userResources);
@@ -67,11 +71,31 @@ namespace WordWhisper.Web.Areas.User.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(WordWhisper.Entities.Concrete.User user)
         {
-            bool isLogin = _uow.UserRepository.Login(user.Username, user.Password);
-            if (isLogin)
+            var loginUser = _uow.UserRepository.Login(user.Username, user.Password);
+            if (loginUser != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Role, loginUser.Role.RoleName)
+                    // İsteğe bağlı olarak başka iddialar da ekleyebilirsin
+                };
+
+                var claimsIdentity = new ClaimsIdentity(
+                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    ExpiresUtc = DateTime.Now.AddMinutes(2)
+                    // İsteğe bağlı olarak oturum süresi, çıkış sayfası vb. belirtilebilir
+                };
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                 return Redirect("~/home/index");
-            
+
+            }
+
             return Redirect("~/error");
         }
+
     }
 }

@@ -21,6 +21,7 @@ namespace WordWhisper.Web.Controllers
         {
             username = "test";
             password = "test2";
+            
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, username),
@@ -71,12 +72,12 @@ namespace WordWhisper.Web.Controllers
             }
             return true;
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public string GetAuth()
         {
             return "OK!";
         }
-
+        [Authorize(Roles = "User")]
         public IActionResult Register()
         {
             return View();
