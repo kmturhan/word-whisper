@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 
@@ -11,9 +12,11 @@ using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 namespace WordWhisper.DataAccess.Migrations
 {
     [DbContext(typeof(WordWhisperEFContext))]
-    partial class WordWhisperEFContextModelSnapshot : ModelSnapshot
+    [Migration("20240204225439_rolemg")]
+    partial class rolemg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

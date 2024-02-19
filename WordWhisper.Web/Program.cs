@@ -10,6 +10,7 @@ using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 using WordWhisper.Repository.Abstract;
 using WordWhisper.Repository.Concrete;
 using WordWhisper.Infrastructer;
+using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +20,13 @@ AppSetting.JwtIssuer = builder.Configuration["JwtConfig:Issuer"];
 AppSetting.JwtAudience = builder.Configuration["JwtConfig:Audience"];
 AppSetting.JwtSigninKey = builder.Configuration["JwtConfig:SigninKey"];
 builder.Services.AddDbContext<WordWhisperEFContext>(x => x.UseSqlServer(AppSetting.ConnectionString));
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

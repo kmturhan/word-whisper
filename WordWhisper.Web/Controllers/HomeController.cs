@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WordWhisper.Entities;
 using WordWhisper.Web.Models;
@@ -26,7 +27,7 @@ namespace WordWhisper.Web.Controllers
             //var testDb = _context.Users.ToList();
             //return View(testDb);
         }
-        [Route("~/test/{city}")]
+        [Authorize]
         public IActionResult Privacy(string city)
         {
             return View();

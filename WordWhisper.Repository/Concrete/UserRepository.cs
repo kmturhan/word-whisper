@@ -23,10 +23,11 @@ namespace WordWhisper.Repository.Concrete
             user.Password = _passwordHasher.Hash(user.Password);
             Add(user);
         }
-        public bool Login(string username, string password)
+        public User Login(string username, string password)
         {
 
             var user = GetAll().FirstOrDefault(x => x.IsActive && x.Username == username);
+            
             if(user == null)
             {
                 throw new Exception("User is not found or user is not active!");
@@ -38,7 +39,7 @@ namespace WordWhisper.Repository.Concrete
             {
                 throw new Exception("Username or Password is not correct!");
             }
-            return true;   
+            return user;   
         }
 
         
