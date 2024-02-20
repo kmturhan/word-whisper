@@ -78,9 +78,9 @@ namespace WordWhisper.Web.Controllers
             return "OK!";
         }
         [Authorize(Roles = "User")]
-        public IActionResult Register()
+        public string Register()
         {
-            return View();
+            return "OK!!!!!!!!!!!!!!!!";
         }
     }
 }

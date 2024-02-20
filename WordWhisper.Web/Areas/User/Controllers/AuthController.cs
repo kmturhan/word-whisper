@@ -78,7 +78,6 @@ namespace WordWhisper.Web.Areas.User.Controllers
                 {
                     new Claim(ClaimTypes.Name, user.Username),
                     new Claim(ClaimTypes.Role, loginUser.Role.RoleName)
-                    // İsteğe bağlı olarak başka iddialar da ekleyebilirsin
                 };
 
                 var claimsIdentity = new ClaimsIdentity(
@@ -87,7 +86,6 @@ namespace WordWhisper.Web.Areas.User.Controllers
                 var authProperties = new AuthenticationProperties
                 {
                     ExpiresUtc = DateTime.Now.AddMinutes(2)
-                    // İsteğe bağlı olarak oturum süresi, çıkış sayfası vb. belirtilebilir
                 };
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                 return Redirect("~/home/index");

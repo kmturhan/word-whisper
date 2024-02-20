@@ -33,6 +33,11 @@ namespace WordWhisper.Repository.Concrete
             return _dbSet.ToList();
         }
 
+        public IQueryable<T> GetAllQueryable()
+        {
+            return _dbSet.AsQueryable();
+        }
+
         public T GetById(int id)
         {
             return _dbSet.Find(id);

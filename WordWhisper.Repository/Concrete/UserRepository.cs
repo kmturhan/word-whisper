@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,8 +26,7 @@ namespace WordWhisper.Repository.Concrete
         }
         public User Login(string username, string password)
         {
-
-            var user = GetAll().FirstOrDefault(x => x.IsActive && x.Username == username);
+            var user = _context.Set<User>().FirstOrDefault(x => x.IsActive && x.Username == username);
             
             if(user == null)
             {

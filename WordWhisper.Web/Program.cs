@@ -19,7 +19,7 @@ AppSetting.ConnectionString = builder.Configuration["ConnectionStrings:SqlServer
 AppSetting.JwtIssuer = builder.Configuration["JwtConfig:Issuer"];
 AppSetting.JwtAudience = builder.Configuration["JwtConfig:Audience"];
 AppSetting.JwtSigninKey = builder.Configuration["JwtConfig:SigninKey"];
-builder.Services.AddDbContext<WordWhisperEFContext>(x => x.UseSqlServer(AppSetting.ConnectionString));
+builder.Services.AddDbContext<WordWhisperEFContext>(x => x.UseLazyLoadingProxies().UseSqlServer(AppSetting.ConnectionString));
 
 builder.Services.AddAuthentication(options =>
 {
