@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WordWhisper.Entities.Concrete
 {
-    public class User : BaseEntity
+    public partial class User : BaseEntity
     {
         public int Id { get; set; }
         public string Username { get; set; }

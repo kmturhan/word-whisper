@@ -10,5 +10,11 @@ namespace WordWhisper.Web.Controllers
         {
             return View();
         }
+
+        [Route("register")]
+        public IActionResult Register()
+        {
+            return View();
+        }
     }
 }

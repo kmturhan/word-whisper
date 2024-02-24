@@ -11,6 +11,7 @@ using WordWhisper.Repository.Abstract;
 using WordWhisper.Repository.Concrete;
 using WordWhisper.Infrastructer;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using WordWhisper.Entities.Concrete;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -60,7 +61,33 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 app.Logger.LogInformation("START PROJECT");
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
 
+    try
+    {
+        var dbContext = services.GetRequiredService<WordWhisperEFContext>();
+
+        // Role tablosunda kayýt var mý kontrol et
+        if (!dbContext.Roles.Any())
+        {
+            // Kayýt yoksa varsayýlan kayýtlarý ekle
+            dbContext.Roles.AddRange(
+                new Role { RoleName = "Admin" },
+                new Role { RoleName = "User" }
+            );
+
+            // Deðiþiklikleri kaydet
+            dbContext.SaveChanges();
+        }
+    }
+    catch (Exception ex)
+    {
+        // Hata durumunda hata günlüðüne kaydet
+        Console.WriteLine("Hata meydana geldi: " + ex.Message);
+    }
+}
 
 //builder.Services.AddDbContext<WordWhisperApplicationContext>(options => options.UseSqlServer(connectionStringSql));
 
