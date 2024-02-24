@@ -74,8 +74,8 @@ using (var scope = app.Services.CreateScope())
         {
             // Kayýt yoksa varsayýlan kayýtlarý ekle
             dbContext.Roles.AddRange(
-                new Role { RoleName = "Admin" },
-                new Role { RoleName = "User" }
+                new Role { Id = 1, RoleName = "Admin" },
+                new Role { Id = 2, RoleName = "User" }
             );
 
             // Deðiþiklikleri kaydet
@@ -88,8 +88,6 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine("Hata meydana geldi: " + ex.Message);
     }
 }
-
-//builder.Services.AddDbContext<WordWhisperApplicationContext>(options => options.UseSqlServer(connectionStringSql));
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
