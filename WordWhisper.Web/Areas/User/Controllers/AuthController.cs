@@ -33,7 +33,6 @@ namespace WordWhisper.Web.Areas.User.Controllers
         }
 
         [HttpGet]
-
         public IActionResult Register()
         {
             //Entities.Concrete.User user = new Entities.Concrete.User();

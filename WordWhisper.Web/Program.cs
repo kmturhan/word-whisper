@@ -103,6 +103,11 @@ app.UseEndpoints(endpoints =>
         areaName: "User",
         pattern: "User/{controller=Home}/{action=Index}/{id?}"
         );
+    endpoints.MapAreaControllerRoute(
+        name: "Admin",
+        areaName: "Admin",
+        pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
+        );
     endpoints.MapDefaultControllerRoute();
 });
 
