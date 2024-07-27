@@ -65,19 +65,19 @@ namespace WordWhisper.Web.Controllers
                 var claims = jwtToken.Claims.ToList();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
                 return false;
             }
-            return true;
         }
+        
         [Authorize(Roles = "Admin")]
         public string GetAuth()
         {
             return "OK!";
         }
-        [Authorize(Roles = "User")]
+
+        [Route("register")]
         public IActionResult Register()
         {
             return View();

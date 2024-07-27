@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using WordWhisper.Core;
 using WordWhisper.DataAccess;
 using WordWhisper.Web.Models;
 using AutoMapper;

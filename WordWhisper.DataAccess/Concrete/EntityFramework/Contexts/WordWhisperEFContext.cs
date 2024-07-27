@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WordWhisper.Entities.Concrete;
-
+using WordWhisper.Domain;
 namespace WordWhisper.DataAccess.Concrete.EntityFramework.Contexts
 {
     public class WordWhisperEFContext : DbContext

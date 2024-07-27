@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using WordWhisper.Core;
 using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
 using WordWhisper.Entities.Concrete;
 using WordWhisper.Repository.Abstract;
