@@ -13,6 +13,11 @@ namespace WordWhisper.DataAccess.Concrete.EntityFramework.Contexts
         {
             
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=localhost;Database=WordWhisper;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;");
+            base.OnConfiguring(optionsBuilder);
+        }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
     }

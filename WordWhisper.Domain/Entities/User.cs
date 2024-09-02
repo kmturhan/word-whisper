@@ -1,4 +1,6 @@
-﻿namespace WordWhisper.Domain;
+﻿using System.Security.AccessControl;
+
+namespace WordWhisper.Domain;
 
 public class User
 {
@@ -7,5 +9,7 @@ public class User
     public string Password { get; set; }
     public string Email { get; set; }
     public int RoleId { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public bool IsActive { get; set; }
     public Role Role { get; set; }
 }

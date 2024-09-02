@@ -8,10 +8,10 @@ namespace WordWhisper.DataAccess.Abstract
 {
     public interface IRepository<T>
     {
-        int Insert(T p);
-        int Update(T p);
-        int Delete(T p);
-        List<T> List();
-        T GetById(int id);
+        Task AddAsync(T p);
+        Task UpdateAsync(T p);
+        Task DeleteAsync(int p);
+        Task<IEnumerable<T>> ListAsync();
+        Task<T> GetByIdAsync(int id);
     }
 }

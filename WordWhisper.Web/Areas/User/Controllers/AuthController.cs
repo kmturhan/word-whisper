@@ -6,9 +6,11 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WordWhisper.DataAccess.Concrete.EntityFramework.Contexts;
+using WordWhisper.Domain;
 using WordWhisper.Entities.Concrete;
 using WordWhisper.Repository.Abstract;
 using WordWhisper.Repository.Concrete;
+using WordWhisper.Services;
 namespace WordWhisper.Web.Areas.User.Controllers
 {
     [Area("User")]
@@ -17,12 +19,14 @@ namespace WordWhisper.Web.Areas.User.Controllers
         private readonly IMapper _mapper;
         private WordWhisperEFContext _context;
         private readonly IUnitOfWork _uow;
+        private readonly IService<WordWhisper.Domain.User> _userService;
 
-        public AuthController(IMapper mapper, WordWhisperEFContext context, UnitOfWork uow)
+        public AuthController(IMapper mapper, WordWhisperEFContext context, UnitOfWork uow, IService<WordWhisper.Domain.User> userService)
         {
             _mapper = mapper;
             _context = context;
             _uow = uow;
+            _userService = userService;
         }
         [HttpGet]
         public IActionResult Index()
@@ -35,16 +39,16 @@ namespace WordWhisper.Web.Areas.User.Controllers
 
         public IActionResult Register()
         {
-            //Entities.Concrete.User user = new Entities.Concrete.User();
-            //UnitOfWork unitOfWork = new UnitOfWork(_context);
-            //user.Email = "kmturhan@gmail.com";
-            //user.CreatedDate = DateTime.Now;
-            //user.Hash = "test";
-            //user.IsActive = true;
-            //user.Username = "testuser";
-            //user.Password = "userpass";
-            //unitOfWork.UserRepository.Add(user);
-            //unitOfWork.Complete();
+            WordWhisper.Domain.User user = new WordWhisper.Domain.User();
+            
+            user.Email = "kmturhan@gmail.com";
+            user.CreatedDate = DateTime.Now;
+            user.IsActive = true;
+            user.Username = "testuser";
+            user.Password = "userpass";
+            _userService.AddAsync(user);
+            // _userService.AddAsync(user);
+            // _uow.Complete();
             return View();
         }
 

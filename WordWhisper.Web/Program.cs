@@ -10,6 +10,8 @@ using WordWhisper.Repository.Abstract;
 using WordWhisper.Repository.Concrete;
 using WordWhisper.Infrastructer;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using WordWhisper.Domain;
+using WordWhisper.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -18,6 +20,7 @@ AppSetting.ConnectionString = builder.Configuration["ConnectionStrings:SqlServer
 AppSetting.JwtIssuer = builder.Configuration["JwtConfig:Issuer"];
 AppSetting.JwtAudience = builder.Configuration["JwtConfig:Audience"];
 AppSetting.JwtSigninKey = builder.Configuration["JwtConfig:SigninKey"];
+
 builder.Services.AddDbContext<WordWhisperEFContext>(x => x.UseSqlServer(AppSetting.ConnectionString));
 
 builder.Services.AddAuthentication(options =>
@@ -40,7 +43,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSetting.JwtSigninKey))
     };
 });
-builder.Services.AddScoped<UnitOfWork>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped(typeof(WordWhisper.DataAccess.Abstract.IRepository<>), typeof(WordWhisper.DataAccess.Concrete.Repository.GeneralRepository<>));
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddHttpContextAccessor();
@@ -80,6 +85,11 @@ app.UseEndpoints(endpoints =>
     endpoints.MapDefaultControllerRoute();
 });
 
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<WordWhisperEFContext>();
+    var canConnect = dbContext.Database.CanConnect();
+    Console.WriteLine($"Veritabanına bağlanılabiliyor mu: {canConnect}");
+}
 
 app.Run();

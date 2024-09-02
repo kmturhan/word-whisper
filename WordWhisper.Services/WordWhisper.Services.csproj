@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WordWhisper.Core\WordWhisper.Core.csproj" />
+    <ProjectReference Include="..\WordWhisper.DataAccess\WordWhisper.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstract\" />
   </ItemGroup>
 
 </Project>
